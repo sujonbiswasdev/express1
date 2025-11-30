@@ -22,7 +22,7 @@ const inialDb =async()=>{
 
         await pool.query(`
             CREATE TABLE IF NOT EXISTS todos(
-            id SERIAL PRIMARY KEY,
+            id uuid DEFAULT gen_random_uuid(),
             user_id INT REFERENCES users(id) ON DELETE CASCADE,
             title VARCHAR(200) NOT NULL,
             description TEXT,
