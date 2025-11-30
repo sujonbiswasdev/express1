@@ -85,12 +85,12 @@ app.delete("/users/:id",async(req:Request,res:Response)=>{
 
 // todos
 app.post("/todos",async(req:Request,res:Response)=>{
-  const {user_id,title} =req.body;
+  const {user_id,title,description} =req.body;
   console.log(user_id,title);
   try {
     const result = await pool.query(`
-      INSERT INTO todos(user_id,title) VALUES($1,$2) RETURNING *
-      `,[user_id,title])
+      INSERT INTO todos(user_id,title,description) VALUES($1,$2,$3) RETURNING *
+      `,[user_id,title,description])
       res.status(201).json({sucess:true,message:"todos data added sucessfully",data:result})
   } catch (error:any) {
     res.status(404).json({sucess:false,message:"don't add todos data",Error:error.message})
