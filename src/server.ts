@@ -101,7 +101,8 @@ app.get("/todos",async(req:Request,res:Response)=>{
   
     try {
       const result =await pool.query(`
-    SELECT * FROM todos;
+    SELECT * FROM todos ORDER BY
+    id ASC;
     `)
     res.status(201).json({sucess:true,message:"data get sucessfully",data:result.rows})
     } catch (error:any) {
