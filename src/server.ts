@@ -2,10 +2,13 @@ import express, { Request, Response } from 'express'
 import inialDb from './config/DB.js'
 import config from './config/index.js'
 import { Pool } from 'pg'
+import cors from 'cors'
 const app = express()
 
 // middleware
 app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+app.use(cors())
 
 const pool = new Pool({
     connectionString:config.app.DB
